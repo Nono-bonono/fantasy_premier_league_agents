@@ -9,10 +9,10 @@ USAGE:
     python fpl.py
 Writes (relative to the repo root, two folders above this file):
     data/raw/fpl/bootstrap_<date>.json   raw response, for debugging
-    data/processed/fpl_players.csv       the one table, latest snapshot
-    data/processed/fpl_players_<date>.csv  dated copy, so you can track form over time
+    data/processed/fpl_players.parquet       the one table, latest snapshot
+    data/processed/fpl_players_<date>.parquet  dated copy, so you can track form over time
 
-INSTALL: pip install requests pandas
+INSTALL: pip install requests pandas pyarrow
 """
 
 import json
@@ -81,8 +81,8 @@ def main():
         json.dump(data, f)
 
     df = build_table(data)
-    df.to_csv(os.path.join(OUT_DIR, "fpl_players.csv"), index=False)
-    df.to_csv(os.path.join(OUT_DIR, f"fpl_players_{today}.csv"), index=False)
+    df.to_parquet(os.path.join(OUT_DIR, "fpl_players.parquet"), index=False)
+    df.to_parquet(os.path.join(OUT_DIR, f"fpl_players_{today}.parquet"), index=False)
     print(f"Wrote {len(df)} players x {df.shape[1]} columns -> {OUT_DIR}")
     print(df[["web_name", "team", "position", "price", "minutes", "total_points"]].head(10).to_string(index=False))
 
