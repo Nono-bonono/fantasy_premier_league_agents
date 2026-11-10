@@ -40,6 +40,7 @@ sending HTTP requests - don't shrink this without reason.
 
 import argparse
 import csv
+import html
 import json
 import os
 import re
@@ -57,7 +58,7 @@ PLAYER_COLUMN_PRIORITY = [
 ]
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-RAW_DIR = os.path.join(BASE_DIR, "raw", "fotmob", "2026-27")
+RAW_DIR = os.path.join(BASE_DIR, "data", "raw", "fotmob", "2026-27")
 
 
 def ordered_fieldnames(rows, priority_columns):
@@ -87,7 +88,7 @@ async def fetch_json(browser, path, max_retries=MAX_RETRIES):
                 print(f"  [warn] no JSON found for {path} (challenge screen?), waiting {wait_s}s (attempt {attempt}/{max_retries})")
                 await asyncio.sleep(wait_s)
                 continue
-            return json.loads(match.group(1).strip())
+            return json.loads(html.unescape(match.group(1)).strip())
         except Exception as e:
             print(f"  [warn] {path} -> {e} (attempt {attempt}/{max_retries})")
             await asyncio.sleep(REQUEST_DELAY_SECONDS * attempt)
@@ -101,7 +102,7 @@ async def get_season_matches(browser, season="2026/2027", debug_dump_path=None):
     data = await fetch_json(browser, path)
 
     if debug_dump_path:
-        with open(debug_dump_path, "w") as f:
+        with open(debug_dump_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
 
     if not data:
@@ -258,11 +259,24 @@ def flatten_player_stat_groups(stats_list):
     return flat
 
 
-async def scrape_matchweek(matchweek, season="2026/2027"):
-    mw_str = f"mw{matchweek:02d}"
-    out_dir = os.path.join(RAW_DIR, mw_str)
-    raw_json_dir = os.path.join(out_dir, "raw_json")
-    os.makedirs(raw_json_dir, exist_ok=True)
+def detect_current_matchweek(all_matches):
+    """
+    The current matchweek = the highest round that has at least one finished match.
+    Unfinished matches in that round are skipped later, so a half-played week is fine.
+    Returns None if nothing has finished yet.
+    """
+    rounds = []
+    for m in all_matches:
+        if (m.get("status") or {}).get("finished"):
+            try:
+                rounds.append(int(m.get("round")))
+            except (TypeError, ValueError):
+                continue
+    return max(rounds) if rounds else None
+
+
+async def scrape_matchweek(matchweek=None, season="2026/2027"):
+    os.makedirs(RAW_DIR, exist_ok=True)
 
     print("Starting browser and warming up on fotmob.com (needed for Cloudflare)...")
     browser = await uc.start()
@@ -275,11 +289,23 @@ async def scrape_matchweek(matchweek, season="2026/2027"):
         print("Browser ready. Fetching season fixture list...")
 
         all_matches = await get_season_matches(
-            browser, season, debug_dump_path=os.path.join(raw_json_dir, "leagues_response_debug.json")
+            browser, season, debug_dump_path=os.path.join(RAW_DIR, "leagues_response_debug.json")
         )
 
+        if matchweek is None:
+            matchweek = detect_current_matchweek(all_matches)
+            if matchweek is None:
+                print("No finished matches found yet this season - nothing to scrape.")
+                return
+            print(f"Auto-selected matchweek {matchweek} (latest round with a finished match).")
+
+        mw_str = f"mw{matchweek:02d}"
+        out_dir = os.path.join(RAW_DIR, mw_str)
+        raw_json_dir = os.path.join(out_dir, "raw_json")
+        os.makedirs(raw_json_dir, exist_ok=True)
+
         # Diagnostic dump - always save this so we can see the real shape if filtering fails
-        with open(os.path.join(raw_json_dir, "season_matches_debug.json"), "w") as f:
+        with open(os.path.join(raw_json_dir, "season_matches_debug.json"), "w", encoding="utf-8") as f:
             json.dump(all_matches, f, indent=2)
 
         print(f"Fetched {len(all_matches)} total matches for the season.")
@@ -313,7 +339,7 @@ async def scrape_matchweek(matchweek, season="2026/2027"):
                 print(f"  [warn] no match details returned for {match_id}, skipping")
                 continue
 
-            with open(os.path.join(raw_json_dir, f"{match_id}_matchdetails.json"), "w") as f:
+            with open(os.path.join(raw_json_dir, f"{match_id}_matchdetails.json"), "w", encoding="utf-8") as f:
                 json.dump(details, f, indent=2)
 
             home_row, away_row = extract_team_stats(details, home_name, away_name, match_id)
@@ -329,7 +355,7 @@ async def scrape_matchweek(matchweek, season="2026/2027"):
 
     if team_rows:
         team_fields = ordered_fieldnames(team_rows, TEAM_COLUMN_PRIORITY)
-        with open(os.path.join(out_dir, "team_stats.csv"), "w", newline="") as f:
+        with open(os.path.join(out_dir, "team_stats.csv"), "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=team_fields)
             writer.writeheader()
             writer.writerows(team_rows)
@@ -337,7 +363,7 @@ async def scrape_matchweek(matchweek, season="2026/2027"):
 
     if player_rows:
         player_fields = ordered_fieldnames(player_rows, PLAYER_COLUMN_PRIORITY)
-        with open(os.path.join(out_dir, "player_stats.csv"), "w", newline="") as f:
+        with open(os.path.join(out_dir, "player_stats.csv"), "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=player_fields)
             writer.writeheader()
             writer.writerows(player_rows)
@@ -348,7 +374,7 @@ async def scrape_matchweek(matchweek, season="2026/2027"):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Scrape a PL matchweek from FotMob.")
-    parser.add_argument("--matchweek", type=int, required=True, help="Matchweek number (1-38)")
+    parser.add_argument("--matchweek", type=int, default=None, help="Matchweek number (1-38). Omit to auto-select the current matchweek.")
     parser.add_argument("--season", default="2026/2027", help="Season string, e.g. '2026/2027'")
     args = parser.parse_args()
     uc.loop().run_until_complete(scrape_matchweek(args.matchweek, args.season))
