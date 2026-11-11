@@ -78,7 +78,42 @@ def _home_factor(history):
     }
 
 
-def predict(player_gw, target_gw, fixtures, use_fixture=True):
+# FPL points per goal / clean sheet by position (the rules, not fitted)
+GOAL_PTS = {"GKP": 6, "DEF": 6, "MID": 5, "FWD": 4}
+CS_PTS = {"GKP": 4, "DEF": 4, "MID": 1, "FWD": 0}
+ASSIST_PTS = 3
+
+
+def _point_shares(history):
+    """Share of each position's points that come from goals+assists and from clean sheets."""
+    played = history[history["minutes"] > 0]
+    g = played.groupby("position")[["total_points", "goals_scored", "assists", "clean_sheets"]].sum()
+    att = (g["goals_scored"] * g.index.map(GOAL_PTS) + g["assists"] * ASSIST_PTS) / g["total_points"]
+    cs = g["clean_sheets"] * g.index.map(CS_PTS) / g["total_points"]
+    return att, cs
+
+
+def _team_model_factor(df, history, team_preds):
+    """
+    m5 fixture factor from the Poisson team model.
+      attack ratio = team's xG in this fixture / average xG    (their own attack AND the opponent's leakiness)
+      clean-sheet ratio = P(clean sheet) / average P(clean sheet)
+    Each position's expected points move in proportion to the share of its points that depend on
+    goals/assists (attack ratio) and on clean sheets (clean-sheet ratio). Home advantage is already
+    inside xG, so there is no separate home factor.
+    """
+    tp = team_preds.drop_duplicates(["team", "opponent", "was_home"])
+    key = ["team", "opponent", "was_home"]
+    d = df[key].merge(tp[key + ["xg_for", "p_clean_sheet"]], on=key, how="left")
+    att_ratio = (d["xg_for"] / tp["xg_for"].mean()).fillna(1.0).to_numpy()
+    cs_ratio = (d["p_clean_sheet"] / tp["p_clean_sheet"].mean()).fillna(1.0).to_numpy()
+    s_att, s_cs = _point_shares(history)
+    sa = df["position"].map(s_att).fillna(0).to_numpy()
+    sc = df["position"].map(s_cs).fillna(0).to_numpy()
+    return np.clip(1 + sa * (att_ratio - 1) + sc * (cs_ratio - 1), 0.2, None), att_ratio, cs_ratio
+
+
+def predict(player_gw, target_gw, fixtures, use_fixture=True, team_preds=None):
     """
     player_gw : ingest output (player_id, position, gameweek, minutes, total_points, opponent, was_home)
     fixtures  : one row per player playing in target_gw: player_id, opponent, was_home
@@ -118,7 +153,13 @@ def predict(player_gw, target_gw, fixtures, use_fixture=True):
         df["opp_factor"] = df["opp_factor"].fillna(1.0)
         df["home_factor"] = [home.get((p, bool(h)), 1.0) for p, h in zip(df["position"], df["was_home"])]
         df["m4_with_fixture"] = df["m3_availability_x_ppa"] * df["opp_factor"] * df["home_factor"]
+    # rung 5: x Poisson team-model factor (needs team_preds: team, opponent, was_home, xg_for, p_clean_sheet)
+    if team_preds is not None:
+        f, a, c = _team_model_factor(df, history, team_preds)
+        df["xg_ratio"], df["cs_ratio"], df["team_factor"] = a, c, f
+        df["m5_team_model"] = df["m3_availability_x_ppa"] * f
     return df.reset_index(drop=True)
 
 
 MODELS = ["m0_position_mean", "m1_last_gw", "m2_decayed_form", "m3_availability_x_ppa", "m4_with_fixture"]
+MODELS_WITH_TEAM = MODELS + ["m5_team_model"]
