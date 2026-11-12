@@ -298,7 +298,8 @@ def team_state(team_id, next_gw, prices, gw_prices, get=fetch):
     squad = [p["element"] for p in picks["picks"]]
     bank = picks["entry_history"]["bank"] / 10
 
-    # free transfers, replayed from the season history (2024/25 rules: max 5, kept through WC/FH)
+    # free transfers, replayed from the season history (max 5; a wildcard/free-hit week keeps the
+    # banked FTs but adds none - checked against a real team on 2026-11-12)
     started = played[0]["event"]
     ft = 0
     for e in played:
@@ -306,7 +307,7 @@ def team_state(team_id, next_gw, prices, gw_prices, get=fetch):
         if g == started:
             ft = 1
         elif chips.get(g) in ("wildcard", "freehit"):
-            ft = min(5, ft + 1)
+            pass
         else:
             ft = min(5, max(ft - e["event_transfers"], 0) + 1)
 
