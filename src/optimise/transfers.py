@@ -51,6 +51,7 @@ SRC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, SRC)
 from models.baseline import _team_model_factor, predict  # noqa: E402
 from models import team_strength as ts  # noqa: E402
+from agents.news_agent import apply_news, load_latest  # noqa: E402
 
 ROOT = os.path.dirname(SRC)
 PROC = os.path.join(ROOT, "data", "processed")
@@ -136,6 +137,51 @@ def build_pool(pts, meta, squad, decay):
 # ---------------------------------------------------------------------------------------------
 # The optimisation model
 # ---------------------------------------------------------------------------------------------
+def build_watchlist(best, state, pts, pts_free, meta, players, cfg, n_alt=2, n_capt=3, n_flag=5):
+    """
+    Players worth checking team news on: the ones a news item could change the plan for.
+      squad     your current 15 (one may have been ruled out / returned)
+      target    anyone the plan buys, in any planned week
+      captain   the planned captain / vice, plus the next best few by expected points
+      alt       the best few non-squad players per position (the runners-up a target might be swapped for)
+      flagged   top scorers FPL currently flags as doubtful/injured. FPL's flag already pushed them down the
+                ranking, so without this a player who is actually fit again could never be found
+    pts is week-by-week expected points WITH FPL's availability; pts_free is the same without it.
+    Returns a list of dicts: player_id, web_name, team, reasons (comma-separated).
+    """
+    w = np.array([cfg["decay"] ** k for k in range(pts.shape[1])])
+    score = pd.Series(pts.to_numpy() @ w, index=pts.index)
+    free = pd.Series(pts_free.to_numpy() @ w, index=pts_free.index)
+    why = {}
+
+    def add(p, reason):
+        why.setdefault(int(p), set()).add(reason)
+
+    squad = set(state["squad"])
+    for p in squad:
+        add(p, "squad")
+    for step in best["plan"]:
+        for p in set(step["squad"]) - squad:
+            add(p, "target")
+        add(step["captain"], "captain")
+        if step.get("vice"):
+            add(step["vice"], "captain")
+    for p in score.drop(index=list(squad), errors="ignore").nlargest(n_capt).index:
+        add(p, "captain")
+    outside = score.drop(index=list(squad), errors="ignore")
+    for pos in SQUAD:
+        ids = [p for p in outside.index if p in meta.index and meta.at[p, "position"] == pos]
+        for p in outside.loc[ids].nlargest(n_alt).index:
+            add(p, "alt")
+    info = players.set_index("player_id")
+    risky = info[((info["status"] != "a") | (info["chance_of_playing_next_round"].fillna(100) < 100))
+                 & ~info["status"].isin(["u", "n"])].index
+    for p in free.loc[free.index.intersection(risky)].nlargest(n_flag).index:
+        add(p, "flagged")
+    return [dict(player_id=p, web_name=meta.at[p, "web_name"], team=meta.at[p, "team"],
+                 reasons=",".join(sorted(r))) for p, r in why.items() if p in meta.index]
+
+
 def get_solver(time_limit=20):
     for name in ("HiGHS", "PULP_CBC_CMD", "HiGHS_CMD"):
         try:
@@ -371,7 +417,7 @@ def remember_team(team_id, name):
     t.to_csv(TEAMS_CSV, index=False)
 
 
-def save(result, state, pts, meta, cfg, gw, hold_obj):
+def save(result, state, pts, meta, cfg, gw, hold_obj, watch=None):
     out_dir = os.path.join(REC_DIR, f"{state['team_id']}_{slug(state['team_name'])}")
     os.makedirs(out_dir, exist_ok=True)
     stem = os.path.join(out_dir, f"gw{gw}_{datetime.now():%Y-%m-%d_%H%M}")
@@ -400,6 +446,7 @@ def save(result, state, pts, meta, cfg, gw, hold_obj):
         plan=[dict(gameweek=s["gameweek"], out=[name(p) for p in s["transfers_out"]], into=[name(p) for p in s["transfers_in"]],
                    hits=s["hits"], captain=name(s["captain"]), xi_points=s["xi_points"]) for s in result["plan"]],
     )
+    js["watchlist"] = watch or []     # who the news agent should check (see build_watchlist)
     with open(stem + ".json", "w", encoding="utf-8") as f:
         json.dump(js, f, indent=2, ensure_ascii=False)
     return stem, js
@@ -417,6 +464,7 @@ def main(argv=None, get=fetch, ask=ask_team_id):
     ap.add_argument("--model", choices=["m3", "m5"], default=DEFAULTS["model"])
     ap.add_argument("--ft", type=int, help="override the free transfers worked out from your history")
     ap.add_argument("--bank", type=float, help="override money in the bank (£m)")
+    ap.add_argument("--no-news", action="store_true", help="ignore the news agent, use FPL flags only")
     a = ap.parse_args(argv)
     cfg = dict(DEFAULTS, horizon=a.horizon, decay=a.decay, margin=a.margin, ft_end_value=a.ft_value, ft_cap=a.ft_cap, model=a.model)
 
@@ -452,6 +500,8 @@ def main(argv=None, get=fetch, ask=ask_team_id):
     roster = players[["player_id", "position", "team"]]
     avail = players[["player_id", "status"]].assign(
         avail=(players["chance_of_playing_next_round"].fillna(100) / 100).clip(0, 1))
+    avail = apply_news(avail, None if a.no_news else load_latest(gw))   # news agent output, if any
+    print(f"News overrides applied to {int((avail['avail_source'] == 'news').sum())} player(s).")
     pts = project_points(player_gw, roster, up, team_preds, gw, cfg["horizon"], cfg["model"], avail)
 
     meta = players.set_index("player_id")[["web_name", "team", "position", "price"]].rename(columns={"price": "buy"})
@@ -461,7 +511,9 @@ def main(argv=None, get=fetch, ask=ask_team_id):
     pool = build_pool(pts, meta, state["squad"], cfg["decay"])
     best = optimise(pts.loc[pool], meta, state["squad"], state["bank"], state["ft"], cfg)
     hold = optimise(pts.loc[pool], meta, state["squad"], state["bank"], state["ft"], cfg, allow_transfers=False)
-    stem, js = save(best, state, pts, meta, cfg, gw, hold["objective"])
+    pts_free = project_points(player_gw, roster, up, team_preds, gw, cfg["horizon"], cfg["model"], None)
+    watch = build_watchlist(best, state, pts, pts_free, meta, players, cfg)
+    stem, js = save(best, state, pts, meta, cfg, gw, hold["objective"], watch)
 
     w1 = best["plan"][0]
     print("\nRECOMMENDATION:", "HOLD (no transfer beats the margin)" if not w1["transfers_in"] else "")
@@ -480,6 +532,7 @@ def main(argv=None, get=fetch, ask=ask_team_id):
         moves = ", ".join(f"{o} -> {i}" for o, i in zip(s["out"], s["into"])) or "hold"
         print(f"  GW{s['gameweek']}: {moves}" + (f" ({s['hits']} hit)" if s["hits"] else ""))
     print(f"\nSaved to {stem}.csv / .json")
+    return stem, js
 
 
 if __name__ == "__main__":

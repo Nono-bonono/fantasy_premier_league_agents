@@ -39,6 +39,7 @@ import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from models.baseline import MODELS, predict  # noqa: E402
+from agents.news_agent import apply_news, load_latest  # noqa: E402
 
 BASE_DIR = os.path.abspath(os.path.join(HERE, ".."))
 PROC_DIR = os.path.join(BASE_DIR, "data", "processed")
@@ -60,7 +61,7 @@ def player_fixtures(players, team_fixtures, gw):
     return out
 
 
-def predict_gameweek(player_gw, players, team_fixtures, gw, model=DEFAULT_MODEL):
+def predict_gameweek(player_gw, players, team_fixtures, gw, model=DEFAULT_MODEL, use_news=True):
     fx = player_fixtures(players, team_fixtures, gw)
     if fx.empty:
         raise SystemExit(f"No fixtures found for gameweek {gw} - run fpl_fixtures.py (or check --gw).")
@@ -84,10 +85,11 @@ def predict_gameweek(player_gw, players, team_fixtures, gw, model=DEFAULT_MODEL)
                                     "chance_of_playing_next_round", "news", "ep_next"]]
     out = agg.join(info, on="player_id")
     out["avail"] = (out["chance_of_playing_next_round"].fillna(100) / 100).clip(0, 1)
+    out = apply_news(out, load_latest(gw) if use_news else None)   # news agent output, if any (avail_source: fpl/news)
     out["xpts"] = (out[model].fillna(0) * out["avail"]).round(3)
     out["gameweek"] = gw
     cols = ["gameweek", "player_id", "web_name", "team", "position", "price", "opponent", "was_home",
-            "n_fixtures", "p_appear", "m3_availability_x_ppa", "m4_with_fixture", "avail", "xpts",
+            "n_fixtures", "p_appear", "m3_availability_x_ppa", "m4_with_fixture", "avail", "avail_source", "xpts",
             "ep_next", "status", "news"]
     return out[cols].sort_values("xpts", ascending=False).reset_index(drop=True)
 
@@ -97,6 +99,7 @@ def main():
     ap.add_argument("--gw", type=int, help="gameweek to predict (default: last played + 1)")
     ap.add_argument("--model", default=DEFAULT_MODEL, choices=MODELS[3:])
     ap.add_argument("--top", type=int, default=20)
+    ap.add_argument("--no-news", action="store_true", help="ignore the news agent, use FPL flags only")
     ap.add_argument("--fixtures", default=FIXTURES_PATH)
     ap.add_argument("--out-dir", default=OUT_DIR)
     args = ap.parse_args()
@@ -115,7 +118,8 @@ def main():
         print(f"[warn] fpl_players.parquet is from {snap}, not today - ep_next and injury flags may be stale. "
               f"Run fpl.py first.")
 
-    pred = predict_gameweek(player_gw, players, team_fixtures, gw, args.model)
+    pred = predict_gameweek(player_gw, players, team_fixtures, gw, args.model, use_news=not args.no_news)
+    print(f"News overrides applied to {int((pred['avail_source'] == 'news').sum())} player(s).")
     blank = players[~players["team"].isin(set(team_fixtures.loc[team_fixtures["gameweek"] == gw, "team"]))]
     if len(blank):
         print(f"{blank['team'].nunique()} team(s) have no fixture in GW{gw} and are left out: "
