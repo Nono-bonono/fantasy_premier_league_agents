@@ -11,6 +11,7 @@ dist/
 # ---- Results and misc ----
 outputs/
 *.txt
+!requirements.txt
 /raw
 *.csv
 !data/processed/id_map.csv
