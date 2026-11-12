@@ -21,7 +21,8 @@ CAVEATS
 USAGE:
     python src/evaluate/backtest_transfers.py --season 2025-26 --grid      # full grid (slow-ish)
     python src/evaluate/backtest_transfers.py --margin 1.5 --ft-value 1 --horizon 3   # one setting, this season
-Writes data/backtest/transfers_grid[_<season>].csv and transfers_by_gw[_<season>].csv.
+    python src/evaluate/backtest_transfers.py --season 2025-26 --horizons 2,3 --decays 0.9,0.7,0.5 --ft-values 0,1,2,3 --ft-caps 2
+Writes data/backtest/transfers_grid[_<season>]_<date>_<HHMM>.csv and transfers_by_gw[...]_<date>_<HHMM>.csv.
 """
 
 import argparse
@@ -29,6 +30,7 @@ import itertools
 import os
 import sys
 import time
+from datetime import datetime
 from multiprocessing import Pool
 
 import numpy as np
@@ -51,7 +53,7 @@ VALID_MIN = {"DEF": 3, "MID": 2, "FWD": 1}
 def load(season):
     if season:
         gw = pd.read_parquet(os.path.join(PROC, f"player_gw_{season}.parquet"))
-        gw = gw.rename(columns={"player_id": "player_id_now"}).rename(columns={"last_season_id": "player_id"})
+        # player_id is the key: last_season_id is wrong in ~300 rows (mostly GW26/33/36), player_id is consistent
         return gw, ts.last_season_team_fixtures(), None, 0.0
     gw = pd.read_parquet(os.path.join(PROC, "player_gw.parquet"))
     return gw, ts.load_team_fixtures(), ts.last_season_prior(), ts.CARRY
@@ -142,7 +144,11 @@ def replay(weeks, cfg, allow_transfers=True):
 
 def run_cfg(args):
     weeks, cfg, allow = args
-    df = replay(weeks, cfg, allow)
+    try:
+        df = replay(weeks, cfg, allow)
+    except Exception as e:  # one bad setting shouldn't lose the rest of the grid
+        print(f"FAILED H{cfg['horizon']} margin {cfg['margin']:g} ft {cfg['ft_end_value']:g}: {e}", flush=True)
+        df = None
     return cfg, allow, df
 
 
@@ -155,6 +161,11 @@ def main():
     ap.add_argument("--horizon", type=int, default=T.DEFAULTS["horizon"])
     ap.add_argument("--model", choices=["m3", "m5"], default="m5")
     ap.add_argument("--workers", type=int, default=2)
+    ap.add_argument("--horizons", help="comma list, e.g. 2,3 (with the lists below: a custom grid)")
+    ap.add_argument("--decays", help="comma list of week weights, e.g. 0.9,0.7,0.5")
+    ap.add_argument("--margins", help="comma list")
+    ap.add_argument("--ft-values", help="comma list")
+    ap.add_argument("--ft-caps", help="comma list")
     a = ap.parse_args()
     suffix = f"_{a.season}" if a.season else ""
 
@@ -163,29 +174,47 @@ def main():
     print(f"Projections for GW{min(weeks)}-{max(weeks)} built in {time.time() - t0:.0f}s")
 
     base = dict(T.DEFAULTS, model=a.model)
-    if a.grid:
+    lists = dict(horizon=a.horizons, decay=a.decays, margin=a.margins, ft_end_value=a.ft_values, ft_cap=a.ft_caps)
+    if any(lists.values()):
+        single = dict(horizon=a.horizon, decay=base["decay"], margin=a.margin, ft_end_value=a.ft_value, ft_cap=base["ft_cap"])
+        axes = {k: [type(single[k])(x) for x in v.split(",")] if v else [single[k]] for k, v in lists.items()}
+        cfgs = [dict(base, **dict(zip(axes, combo))) for combo in itertools.product(*axes.values())]
+        if base not in cfgs:
+            cfgs.append(dict(base))   # the current default, for reference
+    elif a.grid:
         cfgs = [dict(base, margin=m, ft_end_value=f, horizon=h)
                 for h, m, f in itertools.product([1, 2, 3, 4, 5], [0, 1, 2, 3], [0, 1, 2])]
     else:
         cfgs = [dict(base, margin=a.margin, ft_end_value=a.ft_value, horizon=a.horizon)]
     jobs = [(weeks, c, True) for c in cfgs] + [(weeks, dict(base, horizon=3), False)]
 
+    results = []
     with Pool(a.workers) as pool:
-        results = pool.map(run_cfg, jobs)
+        for i, (cfg, allow, df) in enumerate(pool.imap_unordered(run_cfg, jobs), 1):
+            if df is None:
+                continue
+            results.append((cfg, allow, df))
+            print(f"[{i}/{len(jobs)}] H{cfg['horizon']} decay {cfg['decay']:g} margin {cfg['margin']:g} "
+                  f"ft {cfg['ft_end_value']:g} cap {cfg['ft_cap']}"
+                  f"{'' if allow else ' (no transfers)'}: {df.points.sum()} pts  ({time.time() - t0:.0f}s)", flush=True)
 
     summary, by_gw = [], []
     for cfg, allow, df in results:
-        label = "no transfers" if not allow else f"H{cfg['horizon']} m{cfg['margin']:g} ft{cfg['ft_end_value']:g}"
+        label = "no transfers" if not allow else (f"H{cfg['horizon']} d{cfg['decay']:g} m{cfg['margin']:g} "
+                                                  f"ft{cfg['ft_end_value']:g} cap{cfg['ft_cap']}")
         summary.append(dict(setting=label, horizon=cfg["horizon"] if allow else np.nan,
+                            decay=cfg["decay"] if allow else np.nan, ft_cap=cfg["ft_cap"] if allow else np.nan,
                             margin=cfg["margin"] if allow else np.nan, ft_value=cfg["ft_end_value"] if allow else np.nan,
                             total=df.points.sum(), per_gw=df.points.mean(), transfers=df.transfers.sum(), hits=df.hits.sum()))
         by_gw.append(df.assign(setting=label))
     s = pd.DataFrame(summary).sort_values("total", ascending=False)
-    hold = s.loc[s.setting == "no transfers", "total"].iloc[0]
+    hold = s.loc[s.setting == "no transfers", "total"].max() if (s.setting == "no transfers").any() else np.nan
     s["vs_no_transfers"] = s.total - hold
     os.makedirs(OUT, exist_ok=True)
-    s.to_csv(os.path.join(OUT, f"transfers_grid{suffix}.csv"), index=False)
-    pd.concat(by_gw).to_csv(os.path.join(OUT, f"transfers_by_gw{suffix}.csv"), index=False)
+    stamp = datetime.now().strftime("%Y-%m-%d_%H%M")
+    s.insert(0, "run_at", stamp)
+    s.to_csv(os.path.join(OUT, f"transfers_grid{suffix}_{stamp}.csv"), index=False)
+    pd.concat(by_gw).assign(run_at=stamp).to_csv(os.path.join(OUT, f"transfers_by_gw{suffix}_{stamp}.csv"), index=False)
     pd.set_option("display.width", 200)
     print(f"Season {a.season or 'current'}, GW{min(weeks)}-{max(weeks)}, {time.time() - t0:.0f}s\n")
     print(s.round(1).to_string(index=False))

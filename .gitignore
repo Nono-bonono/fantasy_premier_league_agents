@@ -13,6 +13,7 @@ outputs/
 *.txt
 /raw
 *.csv
+!data/processed/id_map.csv
 *.json
 *.parquet
 *.ipynb

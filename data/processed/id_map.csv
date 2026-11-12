@@ -1,0 +1,557 @@
+fotmob_name,fotmob_team,fpl_id,method,score,fpl_web_name,fpl_team
+David Raya,Arsenal,1,web_name_in_name,1.0,Raya,Arsenal
+Kepa Arrizabalaga,Arsenal,2,web_name_in_name,1.0,Arrizabalaga,Arsenal
+Illan Meslier,Arsenal,3,exact_team,1.0,Meslier,Arsenal
+Gabriel,Arsenal,4,exact_team,1.0,Gabriel,Arsenal
+Jurriën Timber,Arsenal,5,exact_team,1.0,J.Timber,Arsenal
+Myles Lewis-Skelly,Arsenal,7,exact_team,1.0,Lewis-Skelly,Arsenal
+Riccardo Calafiori,Arsenal,8,exact_team,1.0,Calafiori,Arsenal
+Piero Hincapié,Arsenal,9,exact_team,1.0,Hincapie,Arsenal
+Ben White,Arsenal,10,web_name_in_name,1.0,White,Arsenal
+Cristhian Mosquera,Arsenal,11,exact_team,1.0,Mosquera,Arsenal
+Bukayo Saka,Arsenal,12,exact_team,1.0,Saka,Arsenal
+Declan Rice,Arsenal,13,exact_team,1.0,Rice,Arsenal
+Eberechi Eze,Arsenal,14,exact_team,1.0,Eze,Arsenal
+Martin Ødegaard,Arsenal,15,exact_team,1.0,Ødegaard,Arsenal
+Noni Madueke,Arsenal,16,exact_team,1.0,Madueke,Arsenal
+Mikel Merino,Arsenal,17,web_name_in_name,1.0,Merino,Arsenal
+Martín Zubimendi,Arsenal,19,web_name_in_name,1.0,Zubimendi,Arsenal
+Max Dowman,Arsenal,20,exact_team,1.0,Dowman,Arsenal
+Christian Nørgaard,Everton,21,exact_team,1.0,Nørgaard,Everton
+Ethan Nwaneri,Arsenal,22,exact_team,1.0,Nwaneri,Arsenal
+Viktor Gyökeres,Arsenal,25,exact_team,1.0,Gyökeres,Arsenal
+Kai Havertz,Arsenal,26,exact_team,1.0,Havertz,Arsenal
+Emiliano Martínez,Chelsea,28,web_name_in_name,1.0,Martinez,Chelsea
+Marco Bizot,Aston Villa,29,exact_team,1.0,M.Bizot,Aston Villa
+Ezri Konsa,Arsenal,31,web_name_in_name,1.0,Konsa,Arsenal
+Matty Cash,Aston Villa,32,exact_team,1.0,Cash,Aston Villa
+Tyrone Mings,Aston Villa,33,exact_team,1.0,Mings,Aston Villa
+Pau Torres,Aston Villa,34,exact_team,1.0,Pau,Aston Villa
+Lamare Bogarde,Aston Villa,35,exact_team,1.0,Bogarde,Aston Villa
+Ian Maatsen,Aston Villa,36,exact_team,1.0,Maatsen,Aston Villa
+Victor Nilsson Lindelöf,Aston Villa,37,web_name_in_name,1.0,Lindelöf,Aston Villa
+Morgan Rogers,Chelsea,40,exact_team,1.0,Rogers,Chelsea
+Emiliano Buendía,Aston Villa,41,web_name_in_name,1.0,Buendía,Aston Villa
+Evann Guessand,Crystal Palace,42,exact_team,1.0,Guessand,Crystal Palace
+Youri Tielemans,Manchester United,43,exact_team,1.0,Tielemans,Man Utd
+John McGinn,Aston Villa,45,exact_team,1.0,McGinn,Aston Villa
+Ross Barkley,Aston Villa,46,exact_team,1.0,Barkley,Aston Villa
+Boubacar Kamara,Aston Villa,47,exact_team,1.0,Kamara,Aston Villa
+Bradley Burrowes,Aston Villa,50,exact_team,1.0,Burrowes,Aston Villa
+George Hemmings,Aston Villa,51,exact_team,1.0,George Hemmings,Aston Villa
+Alysson Edward,Aston Villa,52,web_name_in_name,1.0,Alysson,Aston Villa
+Johan Manzambi,Aston Villa,53,exact_team,1.0,Manzambi,Aston Villa
+João Gomes,Aston Villa,54,exact_team,1.0,Gomes,Aston Villa
+Tammy Abraham,Aston Villa,56,exact_team,1.0,Abraham,Aston Villa
+Djordje Petrovic,AFC Bournemouth,57,web_name_in_name,1.0,Petrović,Bournemouth
+Djordje Petrović,AFC Bournemouth,57,web_name_in_name,1.0,Petrović,Bournemouth
+Will Dennis,AFC Bournemouth,59,exact_team,1.0,Dennis,Bournemouth
+James Hill,AFC Bournemouth,60,exact_team,1.0,Hill,Bournemouth
+Adrien Truffert,AFC Bournemouth,61,exact_team,1.0,Truffert,Bournemouth
+Bafodé Diakité,AFC Bournemouth,62,exact_team,1.0,Diakité,Bournemouth
+Adam Smith,AFC Bournemouth,64,exact_team,1.0,Smith,Bournemouth
+Julio Soler,AFC Bournemouth,66,web_name_in_name,1.0,Soler,Bournemouth
+Rayan,AFC Bournemouth,67,exact_team,1.0,Rayan,Bournemouth
+Marcus Tavernier,AFC Bournemouth,68,exact_team,1.0,Tavernier,Bournemouth
+Alex Scott,AFC Bournemouth,69,exact_team,1.0,Scott,Bournemouth
+Justin Kluivert,AFC Bournemouth,70,exact_team,1.0,Kluivert,Bournemouth
+Lewis Cook,AFC Bournemouth,71,exact_team,1.0,Cook,Bournemouth
+Ben Gannon-Doak,AFC Bournemouth,72,exact_team,1.0,Gannon-Doak,Bournemouth
+Tyler Adams,AFC Bournemouth,73,exact_team,1.0,Adams,Bournemouth
+David Brooks,AFC Bournemouth,74,exact_team,1.0,Brooks,Bournemouth
+Ryan Christie,AFC Bournemouth,75,exact_team,1.0,Christie,Bournemouth
+Alex Tóth,AFC Bournemouth,76,exact_team,1.0,Tóth.A,Bournemouth
+Amine Adli,AFC Bournemouth,77,exact_team,1.0,Adli,Bournemouth
+Junior Kroupi,AFC Bournemouth,78,exact_team,1.0,Kroupi.Jr,Bournemouth
+Evanilson,AFC Bournemouth,79,exact_team,1.0,Evanilson,Bournemouth
+Álvaro Rodriguez,AFC Bournemouth,81,exact_team,1.0,Rodríguez,Bournemouth
+Caoimhín Kelleher,Brentford,82,exact_team,1.0,Kelleher,Brentford
+Hákon Rafn Valdimarsson,Brentford,83,exact_team,1.0,Valdimarsson,Brentford
+Nathan Collins,Brentford,84,exact_team,1.0,Collins,Brentford
+Sepp van den Berg,Brentford,85,exact_team,1.0,Van den Berg,Brentford
+Keane Lewis-Potter,Brentford,86,exact_team,1.0,Lewis-Potter,Brentford
+Kristoffer Ajer,Brentford,87,exact_team,1.0,Ajer,Brentford
+Michael Kayode,Brentford,88,exact_team,1.0,Kayode,Brentford
+Rico Henry,Brentford,89,exact_team,1.0,Henry,Brentford
+Aaron Hickey,Brentford,90,exact_team,1.0,Hickey,Brentford
+Ethan Pinnock,Coventry City,91,exact_team,1.0,Pinnock,Coventry City
+Ethan Pinnock,Brentford,91,exact_league,1.0,Pinnock,Coventry City
+Jannik Schuster,Brentford,93,exact_team,1.0,Schuster,Brentford
+Kevin Schade,Brentford,94,exact_team,1.0,Schade,Brentford
+Dango Ouattara,Brentford,95,exact_team,1.0,O.Dango,Brentford
+Mikkel Damsgaard,Brentford,96,exact_team,1.0,Damsgaard,Brentford
+Mathias Jensen,Brentford,97,exact_team,1.0,Jensen,Brentford
+Vitaly Janelt,Brentford,98,exact_team,1.0,Janelt,Brentford
+Fábio Carvalho,Brentford,100,web_name_in_name,1.0,Carvalho,Brentford
+Jordan Henderson,Chelsea,101,exact_team,1.0,Henderson,Chelsea
+Yehor Yarmoliuk,Brentford,102,exact_team,1.0,Yarmoliuk,Brentford
+Frank Onyeka,Coventry City,104,exact_team,1.0,Onyeka,Coventry City
+Jaidon Anthony,Brentford,105,exact_team,1.0,Anthony,Brentford
+Igor Thiago,Brentford,106,web_name_in_name,1.0,Thiago,Brentford
+Callum Wilson,Brentford,108,exact_team,1.0,Wilson,Brentford
+Bart Verbruggen,Brighton & Hove Albion,109,exact_team,1.0,Verbruggen,Brighton
+Carl Rushworth,Coventry City,110,exact_team,1.0,Rushworth,Coventry City
+Jason Steele,Brighton & Hove Albion,111,exact_team,1.0,Steele,Brighton
+Jan Paul van Hecke,Tottenham Hotspur,112,exact_team,1.0,Van Hecke,Spurs
+Ferdi Kadioglu,Brighton & Hove Albion,113,fuzzy_team,0.963,F.Kadıoğlu,Brighton
+Ferdi Kadıoğlu,Brighton & Hove Albion,113,exact_team,1.0,F.Kadıoğlu,Brighton
+Olivier Boscagli,Brighton & Hove Albion,114,exact_team,1.0,Boscagli,Brighton
+Maxim De Cuyper,Brighton & Hove Albion,115,exact_team,1.0,De Cuyper,Brighton
+Lewis Dunk,Brighton & Hove Albion,116,exact_team,1.0,Dunk,Brighton
+Costinha,Brighton & Hove Albion,119,exact_team,1.0,Costinha,Brighton
+Michael Svoboda,Brighton & Hove Albion,120,exact_team,1.0,Svoboda,Brighton
+Yankuba Minteh,Brighton & Hove Albion,122,exact_team,1.0,Minteh,Brighton
+Jack Hinshelwood,Brighton & Hove Albion,123,exact_team,1.0,Hinshelwood,Brighton
+Pascal Groß,Brighton & Hove Albion,124,exact_team,1.0,Groß,Brighton
+Georginio Rutter,Brighton & Hove Albion,125,exact_team,1.0,Georginio,Brighton
+Matthew O'Riley,Brighton & Hove Albion,126,web_name_in_name,1.0,O'Riley,Brighton
+Diego Gómez,Brighton & Hove Albion,127,web_name_in_name,1.0,Gomez,Brighton
+Yasin Ayari,Brighton & Hove Albion,129,exact_team,1.0,Ayari,Brighton
+Mats Wieffer,Brighton & Hove Albion,130,exact_team,1.0,Wieffer,Brighton
+Carlos Baleba,Manchester United,131,exact_team,1.0,Baleba,Man Utd
+Nehemiah Oriola,Brighton & Hove Albion,134,exact_team,1.0,Oriola,Brighton
+Zadok Yohanna,Brighton & Hove Albion,135,exact_team,1.0,Yohanna,Brighton
+Danny Welbeck,Chelsea,136,exact_team,1.0,Welbeck,Chelsea
+Charalampos Kostoulas,Brighton & Hove Albion,138,exact_team,1.0,Kostoulas,Brighton
+Robert Sánchez,Chelsea,140,web_name_in_name,1.0,Sánchez,Chelsea
+Reece James,Chelsea,142,exact_team,1.0,James,Chelsea
+Malo Gusto,Chelsea,144,exact_team,1.0,Gusto,Chelsea
+Wesley Fofana,Chelsea,145,exact_team,1.0,Fofana,Chelsea
+Tosin Adarabioyo,Tottenham Hotspur,147,exact_team,1.0,Tosin,Spurs
+Jorrel Hato,Chelsea,148,exact_team,1.0,Hato,Chelsea
+Levi Colwill,Chelsea,149,web_name_in_name,1.0,Colwill,Chelsea
+Josh Acheampong,Chelsea,151,exact_team,1.0,Acheampong,Chelsea
+Marco Palestra,Chelsea,152,exact_team,1.0,Palestra,Chelsea
+Axel Disasi,Crystal Palace,153,exact_team,1.0,Disasi,Crystal Palace
+Cole Palmer,Chelsea,154,exact_team,1.0,Palmer,Chelsea
+Enzo Fernández,Manchester City,155,exact_team,1.0,Enzo,Man City
+Enzo Fernández,Chelsea,155,exact_league,1.0,Enzo,Man City
+Pedro Neto,Chelsea,156,web_name_in_name,1.0,Neto,Chelsea
+Estêvão,Chelsea,157,exact_team,1.0,Estêvão,Chelsea
+Jamie Gittens,Chelsea,158,web_name_in_name,1.0,Gittens,Chelsea
+Moisés Caicedo,Chelsea,159,web_name_in_name,1.0,Caicedo,Chelsea
+Alejandro Garnacho,Aston Villa,160,web_name_in_name,1.0,Garnacho,Aston Villa
+Roméo Lavia,Chelsea,161,exact_team,1.0,Lavia,Chelsea
+Andrey Santos,Manchester United,162,exact_team,1.0,Andrey Santos,Man Utd
+Geovany Quenda,Chelsea,164,exact_team,1.0,Quenda,Chelsea
+João Pedro,Chelsea,165,exact_team,1.0,João Pedro,Chelsea
+Nicolas Jackson,Aston Villa,166,exact_team,1.0,N.Jackson,Aston Villa
+Liam Delap,Nottingham Forest,167,exact_team,1.0,Delap,Nott'm Forest
+Emanuel Emegha,Chelsea,170,web_name_in_name,1.0,Emegha,Chelsea
+Ben Wilson,Coventry City,172,exact_team,1.0,Wilson,Coventry City
+Bobby Thomas,Coventry City,173,exact_team,1.0,Thomas,Coventry City
+Liam Kitching,Coventry City,174,exact_team,1.0,Kitching,Coventry City
+Milan van Ewijk,Coventry City,175,exact_team,1.0,van Ewijk,Coventry City
+Jay Dasilva,Coventry City,176,exact_team,1.0,Dasilva,Coventry City
+Kaine Kesler-Hayden,Coventry City,177,exact_team,1.0,Kesler-Hayden,Coventry City
+Joel Latibeaudiere,Coventry City,179,exact_team,1.0,Latibeaudiere,Coventry City
+Aurèle Amenda,Coventry City,182,exact_team,1.0,Amenda,Coventry City
+Jack Rudoni,Coventry City,183,exact_team,1.0,Rudoni,Coventry City
+Matt Grimes,Coventry City,184,exact_team,1.0,Grimes,Coventry City
+Tatsuhiro Sakamoto,Coventry City,185,exact_team,1.0,Sakamoto,Coventry City
+Ephron Mason-Clark,Coventry City,186,exact_team,1.0,Mason-Clark,Coventry City
+Josh Eccles,Coventry City,187,exact_team,1.0,Eccles,Coventry City
+Victor Torp,Coventry City,188,exact_team,1.0,Torp,Coventry City
+Loum Tchaouna,Coventry City,190,exact_team,1.0,Tchaouna,Coventry City
+Brandon Thomas-Asante,Coventry City,194,exact_team,1.0,Thomas-Asante,Coventry City
+Ellis Simms,Coventry City,195,exact_team,1.0,Simms,Coventry City
+Dean Henderson,Crystal Palace,198,exact_team,1.0,Henderson,Crystal Palace
+Walter Benítez,Crystal Palace,199,exact_team,1.0,Benitez,Crystal Palace
+Maxence Lacroix,Chelsea,200,exact_team,1.0,Lacroix,Chelsea
+Daniel Muñoz,Crystal Palace,201,manual,0.0,,
+Daniel Muñoz,Nottingham Forest,201,web_name_in_name,1.0,Muñoz,Nott'm Forest
+Chris Richards,Crystal Palace,202,exact_team,1.0,Richards,Crystal Palace
+Jaydee Canvot,Crystal Palace,203,exact_team,1.0,Canvot,Crystal Palace
+Tyrick Mitchell,Crystal Palace,204,exact_team,1.0,Mitchell,Crystal Palace
+Borna Sosa,Crystal Palace,205,exact_team,1.0,Sosa,Crystal Palace
+Chadi Riad,Crystal Palace,206,exact_team,1.0,Chadi Riad,Crystal Palace
+Óscar Mingueza,Crystal Palace,207,exact_team,1.0,Mingueza,Crystal Palace
+Ismaïla Sarr,Crystal Palace,208,exact_team,1.0,Sarr,Crystal Palace
+Brennan Johnson,Everton,209,exact_team,1.0,Johnson,Everton
+Adam Wharton,Crystal Palace,210,exact_team,1.0,Wharton,Crystal Palace
+Yéremi Pino,Crystal Palace,211,manual,0.0,,
+Will Hughes,Crystal Palace,212,exact_team,1.0,Hughes,Crystal Palace
+Jefferson Lerma,Crystal Palace,213,web_name_in_name,1.0,Lerma,Crystal Palace
+Daichi Kamada,Crystal Palace,214,exact_team,1.0,Kamada,Crystal Palace
+Cheick Oumar Doucouré,Crystal Palace,218,web_name_in_name,1.0,Doucouré,Crystal Palace
+Jørgen Strand Larsen,Crystal Palace,222,exact_team,1.0,Strand Larsen,Crystal Palace
+Jean-Philippe Mateta,Crystal Palace,223,exact_team,1.0,Mateta,Crystal Palace
+Edward Nketiah,Crystal Palace,224,web_name_in_name,1.0,Nketiah,Crystal Palace
+Jordan Pickford,Everton,226,exact_team,1.0,Pickford,Everton
+Mark Travers,Everton,227,exact_team,1.0,Travers,Everton
+Tom King,Everton,228,exact_team,1.0,King,Everton
+James Tarkowski,Everton,229,exact_team,1.0,Tarkowski,Everton
+Jarrad Branthwaite,Everton,230,exact_team,1.0,Branthwaite,Everton
+Michael Keane,Everton,231,exact_team,1.0,Keane,Everton
+Jake O'Brien,Everton,232,exact_team,1.0,O'Brien,Everton
+Vitaliy Mykolenko,Everton,233,web_name_in_name,1.0,Mykolenko,Everton
+Nathan Patterson,Everton,234,exact_team,1.0,Patterson,Everton
+Kiernan Dewsbury-Hall,Everton,236,exact_team,1.0,Dewsbury-Hall,Everton
+Iliman Ndiaye,Manchester City,237,exact_team,1.0,Ndiaye,Man City
+Iliman Ndiaye,Everton,237,exact_league,1.0,Ndiaye,Man City
+Jack Grealish,Manchester City,238,exact_league,1.0,Grealish,Everton
+Jack Grealish,Everton,238,exact_team,1.0,Grealish,Everton
+James Garner,Everton,239,exact_team,1.0,Garner,Everton
+Tim Iroegbunam,Hull City,240,exact_team,1.0,Iroegbunam,Hull City
+Tim Iroegbunam,Everton,240,exact_league,1.0,Iroegbunam,Hull City
+Dwight McNeil,Crystal Palace,241,exact_team,1.0,McNeil,Crystal Palace
+Tyrique George,Everton,242,exact_team,1.0,George,Everton
+Charly Alcaraz,Everton,243,web_name_in_name,1.0,Alcaraz,Everton
+Harrison Armstrong,Everton,244,exact_team,1.0,Armstrong,Everton
+Tyler Dibling,Everton,245,exact_team,1.0,Dibling,Everton
+Merlin Röhl,Everton,246,exact_team,1.0,Röhl,Everton
+Hayden Hackney,Everton,247,exact_team,1.0,Hackney,Everton
+Beto,Everton,248,exact_team,1.0,Beto,Everton
+Thierno Barry,Everton,249,exact_team,1.0,Barry,Everton
+Bernd Leno,Fulham,250,exact_team,1.0,Leno,Fulham
+Benjamin Lecomte,Fulham,251,exact_team,1.0,Lecomte,Fulham
+Joachim Andersen,Fulham,253,exact_team,1.0,Andersen,Fulham
+Antonee Robinson,Fulham,254,exact_team,1.0,Robinson,Fulham
+Jorge Cuenca,Fulham,255,web_name_in_name,1.0,J.Cuenca,Fulham
+Kenny Tete,Fulham,256,exact_team,1.0,Tete,Fulham
+Calvin Bassey,Fulham,257,exact_team,1.0,Bassey,Fulham
+Timothy Castagne,Fulham,258,exact_team,1.0,Castagne,Fulham
+Issa Diop,Ipswich Town,259,exact_team,1.0,Diop,Ipswich Town
+Harry Wilson,Leeds United,260,exact_team,1.0,Wilson,Leeds
+Alex Iwobi,Fulham,261,exact_team,1.0,Iwobi,Fulham
+Emile Smith Rowe,Fulham,262,exact_team,1.0,Smith Rowe,Fulham
+Kevin,Fulham,263,exact_team,1.0,Kevin,Fulham
+Oscar Bobb,Fulham,264,exact_team,1.0,Bobb,Fulham
+Sander Berge,Fulham,265,exact_team,1.0,Berge,Fulham
+Tom Cairney,Fulham,266,exact_team,1.0,Cairney,Fulham
+Sasa Lukic,Ipswich Town,267,exact_team,1.0,Lukić,Ipswich Town
+Saša Lukić,Ipswich Town,267,exact_team,1.0,Lukić,Ipswich Town
+Joshua King,Fulham,268,web_name_in_name,1.0,King,Fulham
+Ryan Sessegnon,Fulham,269,exact_team,1.0,Sessegnon,Fulham
+Harrison Reed,Fulham,270,exact_team,1.0,Reed,Fulham
+Rodrigo Muniz,Fulham,271,web_name_in_name,1.0,Muniz,Fulham
+Dillon Phillips,Hull City,273,exact_team,1.0,Phillips,Hull City
+Jack Butland,Hull City,274,exact_team,1.0,Butland,Hull City
+John Egan,Hull City,277,exact_team,1.0,Egan,Hull City
+Semi Ajayi,Hull City,279,exact_team,1.0,Ajayi,Hull City
+Lewie Coyle,Hull City,280,exact_team,1.0,Coyle,Hull City
+Cody Drameh,Hull City,281,exact_team,1.0,Drameh,Hull City
+Ryan Giles,Hull City,282,exact_team,1.0,Giles,Hull City
+Paddy McNair,Hull City,285,exact_team,1.0,McNair,Hull City
+Mohamed Belloumi,Hull City,286,exact_team,1.0,Belloumi,Hull City
+Liam Millar,Hull City,287,exact_team,1.0,Millar,Hull City
+Kieran Dowell,Hull City,288,exact_team,1.0,Dowell,Hull City
+Matt Crooks,Hull City,289,exact_team,1.0,Crooks,Hull City
+Regan Slater,Hull City,290,exact_team,1.0,Slater,Hull City
+Oli McBurnie,Hull City,295,exact_team,1.0,McBurnie,Hull City
+Christian Walton,Ipswich Town,300,exact_team,1.0,Walton,Ipswich Town
+Cédric Kipré,Ipswich Town,303,exact_team,1.0,Kipré,Ipswich Town
+Dara O'Shea,Ipswich Town,304,exact_team,1.0,O'Shea,Ipswich Town
+Leif Davis,Ipswich Town,305,exact_team,1.0,Davis,Ipswich Town
+Jacob Greaves,Ipswich Town,306,exact_team,1.0,Greaves,Ipswich Town
+Darnell Furlong,Ipswich Town,308,exact_team,1.0,Furlong,Ipswich Town
+Marcelino Núñez,Ipswich Town,309,exact_team,1.0,Núñez,Ipswich Town
+Azor Matusiwa,Ipswich Town,310,exact_team,1.0,Matusiwa,Ipswich Town
+Jack Clarke,Ipswich Town,313,exact_team,1.0,Clarke,Ipswich Town
+Abdul Fatawu,Ipswich Town,315,exact_team,1.0,Fatawu,Ipswich Town
+Emersonn,Ipswich Town,316,exact_team,1.0,Emersonn,Ipswich Town
+Jaden Philogene-Bidace,Ipswich Town,318,web_name_in_name,1.0,Philogene,Ipswich Town
+Chuba Akpom,Ipswich Town,320,exact_team,1.0,Akpom,Ipswich Town
+Sindre Walle Egeli,Ipswich Town,321,exact_team,1.0,Walle Egeli,Ipswich Town
+Kasey McAteer,Ipswich Town,323,exact_team,1.0,McAteer,Ipswich Town
+Karl Darlow,Manchester United,325,exact_team,1.0,Darlow,Man Utd
+Lucas Perri,Leeds United,326,web_name_in_name,1.0,Perri,Leeds
+Jaka Bijol,Leeds United,327,exact_team,1.0,Bijol,Leeds
+Pascal Struijk,Brighton & Hove Albion,328,exact_team,1.0,Struijk,Brighton
+Joe Rodon,Leeds United,329,exact_team,1.0,Rodon,Leeds
+Jayden Bogle,Leeds United,330,exact_team,1.0,Bogle,Leeds
+Gabriel Gudmundsson,Leeds United,331,exact_team,1.0,Gudmundsson,Leeds
+James Justin,Leeds United,332,exact_team,1.0,Justin,Leeds
+Tarik Muharemovic,Leeds United,334,exact_team,1.0,Muharemović,Leeds
+Tarik Muharemović,Leeds United,334,exact_team,1.0,Muharemović,Leeds
+Anton Stach,Leeds United,335,exact_team,1.0,Stach,Leeds
+Noah Okafor,Leeds United,336,exact_team,1.0,Okafor,Leeds
+Brenden Aaronson,Leeds United,337,exact_team,1.0,Aaronson,Leeds
+Ethan Ampadu,Leeds United,338,exact_team,1.0,Ampadu,Leeds
+Sean Longstaff,Leeds United,339,exact_team,1.0,Longstaff,Leeds
+Joe Gelhardt,Hull City,340,exact_team,1.0,Gelhardt,Hull City
+Wilfried Gnonto,Leeds United,341,exact_team,1.0,Gnonto,Leeds
+Daniel James,Leeds United,343,exact_team,1.0,James,Leeds
+Ilia Gruev,Leeds United,344,exact_team,1.0,Gruev,Leeds
+Ao Tanaka,Leeds United,345,web_name_in_name,1.0,Tanaka,Leeds
+Dominic Calvert-Lewin,Leeds United,346,exact_team,1.0,Calvert-Lewin,Leeds
+Lukas Nmecha,Leeds United,347,exact_team,1.0,Nmecha,Leeds
+Alisson Becker,Liverpool,350,exact_team,1.0,A.Becker,Liverpool
+Giorgi Mamardashvili,Liverpool,351,exact_team,1.0,Mamardashvili,Liverpool
+Virgil van Dijk,Liverpool,356,exact_team,1.0,Virgil,Liverpool
+Jeremie Frimpong,Liverpool,357,exact_team,1.0,Frimpong,Liverpool
+Milos Kerkez,Liverpool,358,exact_team,1.0,Kerkez,Liverpool
+Miloš Kerkez,Liverpool,358,exact_team,1.0,Kerkez,Liverpool
+Joseph Gomez,Liverpool,359,web_name_in_name,1.0,Gomez,Liverpool
+Jérémy Jacquet,Liverpool,362,exact_team,1.0,Jacquet,Liverpool
+Konstantinos Tsimikas,Liverpool,364,web_name_in_name,1.0,Tsimikas,Liverpool
+Florian Wirtz,Liverpool,366,exact_team,1.0,Wirtz,Liverpool
+Cody Gakpo,Liverpool,367,exact_team,1.0,Gakpo,Liverpool
+Dominik Szoboszlai,Liverpool,368,exact_team,1.0,Szoboszlai,Liverpool
+Rio Ngumoha,Liverpool,369,exact_team,1.0,Ngumoha,Liverpool
+Federico Chiesa,Liverpool,370,exact_team,1.0,Chiesa,Liverpool
+Ryan Gravenberch,Liverpool,371,exact_team,1.0,Gravenberch,Liverpool
+Alexis Mac Allister,Liverpool,372,exact_team,1.0,Mac Allister,Liverpool
+Wataru Endo,Liverpool,374,web_name_in_name,1.0,Endo,Liverpool
+Trey Nyoni,Liverpool,375,exact_team,1.0,Nyoni,Liverpool
+Víctor Muñoz,Liverpool,377,exact_team,1.0,Munoz,Liverpool
+James McConnell,Liverpool,378,exact_team,1.0,McConnell,Liverpool
+Alexander Isak,Liverpool,379,exact_team,1.0,Isak,Liverpool
+Lewis Koumas,Liverpool,381,exact_team,1.0,Koumas,Liverpool
+Gianluigi Donnarumma,Manchester City,384,exact_team,1.0,Donnarumma,Man City
+James Trafford,Leeds United,385,exact_team,1.0,Trafford,Leeds
+Nico O'Reilly,Manchester City,387,exact_team,1.0,O'Reilly,Man City
+Marc Guéhi,Manchester City,388,exact_team,1.0,Guéhi,Man City
+Matheus Nunes,Manchester City,389,exact_team,1.0,Matheus N.,Man City
+Rúben Dias,Manchester City,390,web_name_in_name,1.0,Rúben,Man City
+Josko Gvardiol,Manchester City,391,exact_team,1.0,Gvardiol,Man City
+Joško Gvardiol,Manchester City,391,exact_team,1.0,Gvardiol,Man City
+Rayan Aït-Nouri,Manchester City,392,exact_team,1.0,Aït-Nouri,Man City
+Abdukodir Khusanov,Manchester City,393,exact_team,1.0,Khusanov,Man City
+Rico Lewis,Manchester City,395,exact_team,1.0,Lewis,Man City
+Vitor Reis,Manchester City,396,exact_team,1.0,Vitor Reis,Man City
+Antoine Semenyo,Manchester City,397,exact_team,1.0,Semenyo,Man City
+Phil Foden,Manchester City,398,exact_team,1.0,Foden,Man City
+Rayan Cherki,Manchester City,399,exact_team,1.0,Cherki,Man City
+Jérémy Doku,Manchester City,400,exact_team,1.0,Doku,Man City
+Omar Marmoush,Tottenham Hotspur,401,exact_team,1.0,Marmoush,Spurs
+Omar Marmoush,Manchester City,401,exact_league,1.0,Marmoush,Spurs
+Sávio,Tottenham Hotspur,403,exact_team,1.0,Sávio,Spurs
+Nico González,Manchester City,405,manual,0.0,,
+Nico González,Newcastle United,405,web_name_in_name,1.0,N.Gonzalez,Newcastle
+Mateo Kovacic,Manchester City,406,exact_team,1.0,Kovačić,Man City
+Mateo Kovačić,Manchester City,406,exact_team,1.0,Kovačić,Man City
+Claudio Echeverri,Manchester City,407,exact_team,1.0,Echeverri,Man City
+Erling Haaland,Manchester City,411,exact_team,1.0,Haaland,Man City
+Senne Lammens,Manchester United,412,exact_team,1.0,Lammens,Man Utd
+Patrick Dorgu,Manchester United,415,exact_team,1.0,Dorgu,Man Utd
+Matthijs de Ligt,Manchester United,416,exact_team,1.0,De Ligt,Man Utd
+Diogo Dalot,Manchester United,417,web_name_in_name,1.0,Dalot,Man Utd
+Harry Maguire,Manchester United,418,exact_team,1.0,Maguire,Man Utd
+Lisandro Martínez,Manchester United,419,exact_team,1.0,Martinez,Man Utd
+Leny Yoro,Manchester United,420,exact_team,1.0,Yoro,Man Utd
+Ayden Heaven,Manchester United,421,exact_team,1.0,Heaven,Man Utd
+Noussair Mazraoui,Manchester United,422,exact_team,1.0,Mazraoui,Man Utd
+Luke Shaw,Manchester United,423,exact_team,1.0,Shaw,Man Utd
+Harry Amass,Manchester United,424,exact_team,1.0,Amass,Man Utd
+Bruno Fernandes,Manchester United,426,web_name_in_name,1.0,B.Fernandes,Man Utd
+Bryan Mbeumo,Manchester United,427,exact_team,1.0,Mbeumo,Man Utd
+Matheus Cunha,Manchester United,428,web_name_in_name,1.0,Cunha,Man Utd
+Marcus Rashford,Manchester United,429,exact_team,1.0,Rashford,Man Utd
+Mason Mount,Manchester United,430,exact_team,1.0,Mount,Man Utd
+Amad Diallo,Manchester United,431,exact_team,1.0,Amad,Man Utd
+Kobbie Mainoo,Manchester United,432,exact_team,1.0,Mainoo,Man Utd
+Jack Fletcher,Manchester United,434,exact_team,1.0,J.Fletcher,Man Utd
+Shea Lacey,Manchester United,435,exact_team,1.0,Lacey,Man Utd
+Tyler Fletcher,Manchester United,438,exact_team,1.0,Fletcher,Man Utd
+Benjamin Sesko,Manchester United,439,exact_team,1.0,Šeško,Man Utd
+Benjamin Šeško,Manchester United,439,exact_team,1.0,Šeško,Man Utd
+Joshua Zirkzee,Manchester United,440,exact_team,1.0,Zirkzee,Man Utd
+Nick Pope,Newcastle United,442,exact_team,1.0,Pope,Newcastle
+Ewen Jaouen,Newcastle United,444,exact_team,1.0,Jaouen,Newcastle
+Malick Thiaw,Newcastle United,445,exact_team,1.0,Thiaw,Newcastle
+Fabian Schär,Newcastle United,446,exact_team,1.0,Schär,Newcastle
+Sven Botman,Newcastle United,447,exact_team,1.0,Botman,Newcastle
+Daniel Burn,Newcastle United,448,web_name_in_name,1.0,Burn,Newcastle
+Lewis Hall,Newcastle United,449,exact_team,1.0,Hall,Newcastle
+Valentino Livramento,Newcastle United,450,web_name_in_name,1.0,Livramento,Newcastle
+Bruno Guimarães,Arsenal,452,web_name_in_name,1.0,Bruno G.,Arsenal
+Harvey Barnes,Newcastle United,453,exact_team,1.0,Barnes,Newcastle
+Anthony Elanga,Newcastle United,454,exact_team,1.0,Elanga,Newcastle
+Sandro Tonali,Tottenham Hotspur,455,exact_team,1.0,Tonali,Spurs
+Jacob Ramsey,Newcastle United,456,exact_team,1.0,J.Ramsey,Newcastle
+Jacob Murphy,Newcastle United,457,exact_team,1.0,J.Murphy,Newcastle
+Joelinton,Newcastle United,458,exact_team,1.0,Joelinton,Newcastle
+Lewis Miley,Newcastle United,459,exact_team,1.0,L.Miley,Newcastle
+Joseph Willock,Newcastle United,460,web_name_in_name,1.0,Willock,Newcastle
+Bazoumana Touré,Newcastle United,461,exact_team,1.0,Touré,Newcastle
+Sean Steur,Newcastle United,462,exact_team,1.0,Steur,Newcastle
+Nick Woltemade,Newcastle United,463,exact_team,1.0,Woltemade,Newcastle
+Yoane Wissa,Newcastle United,464,exact_team,1.0,Wissa,Newcastle
+William Osula,Newcastle United,465,exact_team,1.0,Osula,Newcastle
+Matz Sels,Nottingham Forest,467,exact_team,1.0,Sels,Nott'm Forest
+John Victor,Nottingham Forest,468,web_name_in_name,1.0,John,Nott'm Forest
+Neco Williams,Nottingham Forest,469,exact_team,1.0,N.Williams,Nott'm Forest
+Nikola Milenkovic,Nottingham Forest,471,exact_team,1.0,Milenković,Nott'm Forest
+Nikola Milenković,Nottingham Forest,471,exact_team,1.0,Milenković,Nott'm Forest
+Murillo,Nottingham Forest,472,exact_team,1.0,Murillo,Nott'm Forest
+Ola Aina,Nottingham Forest,473,exact_team,1.0,Aina,Nott'm Forest
+Jair Cunha,Nottingham Forest,474,exact_team,1.0,Jair Cunha,Nott'm Forest
+Zach Abbott,Nottingham Forest,477,exact_team,1.0,Abbott,Nott'm Forest
+Luca Netz,Nottingham Forest,478,exact_team,1.0,Netz,Nott'm Forest
+Morgan Gibbs-White,Nottingham Forest,480,exact_team,1.0,Gibbs-White,Nott'm Forest
+Elliot Anderson,Manchester City,481,exact_team,1.0,Anderson,Man City
+Callum Hudson-Odoi,Nottingham Forest,482,exact_team,1.0,Hudson-Odoi,Nott'm Forest
+Dan Ndoye,Nottingham Forest,483,exact_team,1.0,Ndoye,Nott'm Forest
+James McAtee,Nottingham Forest,486,exact_team,1.0,McAtee,Nott'm Forest
+Nicolás Dominguez,Nottingham Forest,487,exact_team,1.0,Dominguez,Nott'm Forest
+Nicolás Domínguez,Nottingham Forest,487,exact_team,1.0,Dominguez,Nott'm Forest
+Ibrahim Sangaré,Nottingham Forest,488,exact_team,1.0,I.Sangaré,Nott'm Forest
+Ryan Yates,Nottingham Forest,489,exact_team,1.0,Yates,Nott'm Forest
+Chris Wood,Nottingham Forest,490,exact_team,1.0,Wood,Nott'm Forest
+Igor Jesus,Nottingham Forest,491,exact_team,1.0,Igor Jesus,Nott'm Forest
+Taiwo Awoniyi,Coventry City,492,exact_team,1.0,Awoniyi,Coventry City
+Arnaud Kalimuendo-Muinga,Nottingham Forest,493,web_name_in_name,1.0,Kalimuendo,Nott'm Forest
+Antonín Kinsky,Tottenham Hotspur,496,exact_team,1.0,Kinsky,Spurs
+Antonín Kinský,Tottenham Hotspur,496,exact_team,1.0,Kinsky,Spurs
+Martin Dúbravka,Tottenham Hotspur,497,exact_team,1.0,Dubravka,Spurs
+Marcos Senesi,Tottenham Hotspur,498,web_name_in_name,1.0,Senesi,Spurs
+Pedro Porro,Tottenham Hotspur,499,exact_team,1.0,Pedro Porro,Spurs
+Kevin Danso,Sunderland,501,exact_team,1.0,Danso,Sunderland
+Kevin Danso,Tottenham Hotspur,501,exact_league,1.0,Danso,Sunderland
+Andrew Robertson,Tottenham Hotspur,502,exact_team,1.0,Robertson,Spurs
+Micky van de Ven,Tottenham Hotspur,503,exact_team,1.0,Van de Ven,Spurs
+Luka Vuskovic,Brighton & Hove Albion,504,exact_team,1.0,Vuskovic,Brighton
+Luka Vušković,Brighton & Hove Albion,504,exact_team,1.0,Vuskovic,Brighton
+Destiny Udogie,Tottenham Hotspur,506,exact_team,1.0,Udogie,Spurs
+Ben Davies,Tottenham Hotspur,508,exact_team,1.0,Davies,Spurs
+Mohammed Kudus,Tottenham Hotspur,512,exact_team,1.0,Kudus,Spurs
+Mathys Tel,Tottenham Hotspur,514,exact_team,1.0,Tel,Spurs
+James Maddison,Tottenham Hotspur,515,exact_team,1.0,Maddison,Spurs
+Rodrigo Bentancur,Tottenham Hotspur,516,exact_team,1.0,Bentancur,Spurs
+Conor Gallagher,Tottenham Hotspur,519,exact_team,1.0,Gallagher,Spurs
+Lucas Bergvall,Tottenham Hotspur,520,exact_team,1.0,Bergvall,Spurs
+Dejan Kulusevski,Tottenham Hotspur,521,exact_team,1.0,Kulusevski,Spurs
+Archie Gray,Tottenham Hotspur,522,exact_team,1.0,Gray,Spurs
+Mikey Moore,Tottenham Hotspur,523,exact_team,1.0,Moore,Spurs
+Callum Olusesi,Tottenham Hotspur,524,exact_team,1.0,Olusesi,Spurs
+Mateus Fernandes,Tottenham Hotspur,525,exact_team,1.0,Fernandes,Spurs
+Dominic Solanke,Tottenham Hotspur,526,web_name_in_name,1.0,Solanke,Spurs
+Richarlison,Tottenham Hotspur,527,exact_team,1.0,Richarlison,Spurs
+Robin Roefs,Sunderland,529,exact_team,1.0,Roefs,Sunderland
+Melker Ellborg,Sunderland,531,exact_team,1.0,Ellborg,Sunderland
+Daniel Ballard,Sunderland,532,exact_team,1.0,Ballard,Sunderland
+Nordi Mukiele,Sunderland,533,exact_team,1.0,Mukiele,Sunderland
+Trai Hume,Sunderland,534,exact_team,1.0,Hume,Sunderland
+Omar Alderete,Sunderland,535,exact_team,1.0,Alderete,Sunderland
+Reinildo,Sunderland,536,exact_team,1.0,Reinildo,Sunderland
+Luke O'Nien,Sunderland,539,exact_team,1.0,O'Nien,Sunderland
+Thomas Meunier,Sunderland,541,exact_team,1.0,Meunier,Sunderland
+Enzo Le Fée,Sunderland,542,exact_team,1.0,E.Le Fée,Sunderland
+Habib Diarra,Sunderland,543,exact_team,1.0,Diarra,Sunderland
+Granit Xhaka,Sunderland,544,exact_team,1.0,Xhaka,Sunderland
+Noah Sadiki,Sunderland,545,exact_team,1.0,Sadiki,Sunderland
+Romaine Mundle,Sunderland,547,exact_team,1.0,Mundle,Sunderland
+Chris Rigg,Sunderland,548,exact_team,1.0,Rigg,Sunderland
+Chemsdine Talbi,Sunderland,549,exact_team,1.0,Talbi,Sunderland
+Jocelin Ta Bi,Sunderland,550,web_name_in_name,1.0,Jocelin.T,Sunderland
+Nilson Angulo,Sunderland,551,exact_team,1.0,N.Angulo,Sunderland
+Brian Brobbey,Sunderland,552,exact_team,1.0,Brobbey,Sunderland
+Wilson Isidor,Sunderland,553,exact_team,1.0,Isidor,Sunderland
+Remi Matthews,Crystal Palace,555,exact_team,1.0,Matthews,Crystal Palace
+Matt Targett,Hull City,556,exact_team,1.0,Targett,Hull City
+Christos Tzolis,Arsenal,557,exact_team,1.0,Tzolis,Arsenal
+Xaver Schlager,Nottingham Forest,558,exact_team,1.0,Schlager,Nott'm Forest
+Aladji Bamba,Newcastle United,559,exact_team,1.0,Bamba,Newcastle
+Mike Penders,Chelsea,560,exact_team,1.0,Penders,Chelsea
+Aaron Anselmino,Chelsea,561,exact_team,1.0,Anselmino,Chelsea
+Daizen Maeda,Ipswich Town,562,exact_team,1.0,Maeda,Ipswich Town
+Hidemasa Morita,Hull City,563,exact_team,1.0,Morita,Hull City
+Kjell Scherpen,Ipswich Town,564,exact_team,1.0,Scherpen,Ipswich Town
+Mamadou Sangaré,Brentford,565,exact_team,1.0,M.Sangaré,Brentford
+António Silva,AFC Bournemouth,566,web_name_in_name,1.0,Silva,Bournemouth
+Lukás Hornícek,Newcastle United,567,exact_team,1.0,Horníček,Newcastle
+Valentín Barco,Chelsea,568,exact_team,1.0,Barco,Chelsea
+Gonzalo García,Fulham,569,exact_team,1.0,Gonzalo,Fulham
+César Palacios,Fulham,570,exact_team,1.0,Palacios,Fulham
+Florentino,Ipswich Town,571,exact_team,1.0,Florentino,Ipswich Town
+Konstantinos Tzolakis,Hull City,572,exact_team,1.0,Tzolakis,Hull City
+Juanlu Sánchez,AFC Bournemouth,573,exact_team,1.0,Sanchez,Bournemouth
+Jens Hjertø-Dahl,Hull City,574,exact_team,1.0,Hjertø-Dahl,Hull City
+Caleb Yirenkyi,Coventry City,575,exact_team,1.0,Yirenkyi,Coventry City
+Elliot Stroud,Hull City,576,exact_team,1.0,Stroud,Hull City
+Takehiro Tomiyasu,Crystal Palace,577,exact_team,1.0,Tomiyasu,Crystal Palace
+Mykhaylo Mudryk,Tottenham Hotspur,578,web_name_in_name,1.0,Mudryk,Spurs
+Ronald Araujo,Liverpool,579,exact_team,1.0,Araujo,Liverpool
+Shea Charles,Fulham,580,exact_team,1.0,Charles,Fulham
+Ousmane Diomande,Nottingham Forest,581,exact_team,1.0,Diomande,Nott'm Forest
+Brian Madjo,Aston Villa,582,exact_team,1.0,Madjo,Aston Villa
+Pep Chavarría,Chelsea,583,exact_team,1.0,Chavarria,Chelsea
+Gustavo Hamer,Coventry City,584,exact_team,1.0,Hamer,Coventry City
+Lucas Herrington,Hull City,585,exact_team,1.0,Herrington,Hull City
+Nobel Mendy,Hull City,586,exact_team,1.0,Mendy,Hull City
+Gerónimo Rulli,Manchester City,587,exact_team,1.0,Rulli,Man City
+Anan Khalaili,Crystal Palace,588,exact_team,1.0,Khalaili,Crystal Palace
+Lucas Gourna-Douath,Hull City,589,exact_team,1.0,Gourna-Douath,Hull City
+Julio Enciso,Ipswich Town,591,exact_team,1.0,Enciso,Ipswich Town
+Abdoul Ouattara,Ipswich Town,592,exact_team,1.0,Ouattara,Ipswich Town
+Amar Dedic,Newcastle United,593,exact_team,1.0,Dedić,Newcastle
+Amar Dedić,Newcastle United,593,exact_team,1.0,Dedić,Newcastle
+Promise David,Brighton & Hove Albion,594,exact_team,1.0,David,Brighton
+Zavier Gozo,Crystal Palace,595,exact_team,1.0,Gozo,Crystal Palace
+Matteo Ruggeri,Aston Villa,596,exact_team,1.0,Ruggeri,Aston Villa
+Zion Suzuki,Aston Villa,597,exact_team,1.0,Suzuki,Aston Villa
+Nico Elvedi,Leeds United,598,exact_team,1.0,Elvedi,Leeds
+Sidiki Cherif,Coventry City,599,exact_team,1.0,Cherif,Coventry City
+Ibrahim Osman,Brighton & Hove Albion,600,exact_team,1.0,Osman,Brighton
+Luca Williams-Barnett,Tottenham Hotspur,601,exact_team,1.0,Williams-Barnett,Spurs
+Lucá Williams-Barnett,Tottenham Hotspur,601,exact_team,1.0,Williams-Barnett,Spurs
+Cameron Humphreys,Ipswich Town,602,exact_team,1.0,Humphreys,Ipswich Town
+Jayden Lienou,Leeds United,603,exact_team,1.0,Lienou,Leeds
+Alfie Cresswell,Leeds United,604,exact_team,1.0,Cresswell,Leeds
+Malick Junior Yalcouyé,Brighton & Hove Albion,605,web_name_in_name,1.0,Yalcouyé,Brighton
+Triston Rowe,Aston Villa,606,exact_team,1.0,Rowe,Aston Villa
+Luka Lynch,Aston Villa,607,exact_team,1.0,Lynch,Aston Villa
+Daniel Jebbison,AFC Bournemouth,608,exact_team,1.0,Jebbison,Bournemouth
+Leo Shahar,Newcastle United,609,exact_team,1.0,Shahar,Newcastle
+Luc De Fougerolles,Fulham,610,exact_team,1.0,De Fougerolles,Fulham
+Aaron Wan-Bissaka,Aston Villa,611,exact_team,1.0,Wan-Bissaka,Aston Villa
+Dayann Méthalie,Sunderland,612,exact_team,1.0,Methalie,Sunderland
+Jules Ahoka,Sunderland,613,exact_team,1.0,Ahoka,Sunderland
+Jaouen Hadjam,Brighton & Hove Albion,614,exact_team,1.0,Hadjam,Brighton
+Michele Di Gregorio,AFC Bournemouth,615,exact_team,1.0,Di Gregorio,Bournemouth
+Ayyoub Bouaddi,Manchester City,616,exact_team,1.0,Bouaddi,Man City
+Mohamed-Ali Cho,Hull City,617,exact_team,1.0,Cho,Hull City
+Leon Goretzka,Aston Villa,618,exact_team,1.0,Goretzka,Aston Villa
+Exequiel Palacios,Ipswich Town,619,exact_team,1.0,Palacios,Ipswich Town
+Malick Diouf,Brentford,620,web_name_in_name,1.0,Diouf,Brentford
+Ryan McAidoo,Manchester City,621,exact_team,1.0,McAidoo,Man City
+Kaden Braithwaite,Manchester City,622,exact_team,1.0,Braithwaite,Man City
+Daniel Bentley,Coventry City,623,web_name_in_name,1.0,Bentley,Coventry City
+Amario Cozier-Duberry,Brighton & Hove Albion,624,exact_team,1.0,Cozier-Duberry,Brighton
+Alex Cairns,Leeds United,625,exact_team,1.0,Cairns,Leeds
+Macauley Zepa,Fulham,626,web_name_in_name,1.0,Zepa,Fulham
+Bradley Barcola,Liverpool,627,exact_team,1.0,Barcola,Liverpool
+Allan,Manchester City,628,exact_team,1.0,Allan,Man City
+Michael Zetterer,Leeds United,629,exact_team,1.0,Zetterer,Leeds
+Taylor Harwood-Bellis,Aston Villa,630,exact_team,1.0,Harwood-Bellis,Aston Villa
+Ibrahim Mbaye,Aston Villa,631,exact_team,1.0,Mbaye,Aston Villa
+Honest Ahanor,Crystal Palace,633,exact_team,1.0,Ahanor,Crystal Palace
+Matias Fernandez-Pardo,Newcastle United,634,exact_team,1.0,Fernandez-Pardo,Newcastle
+Hugo Larsson,Fulham,635,exact_team,1.0,Larsson,Fulham
+Manuel Ángel,Fulham,636,web_name_in_name,1.0,Ángel,Fulham
+Robinio Vaz,Hull City,637,exact_team,1.0,Vaz,Hull City
+Brooke Norton-Cuffy,Hull City,638,exact_team,1.0,Norton-Cuffy,Hull City
+Chema Andrés,Brighton & Hove Albion,639,web_name_in_name,1.0,Andrés,Brighton
+Zian Flemming,Ipswich Town,640,exact_team,1.0,Flemming,Ipswich Town
+Melvin Bard,Leeds United,641,exact_team,1.0,Bard,Leeds
+Sorba Thomas,Hull City,642,exact_team,1.0,Thomas,Hull City
+Ben Chilwell,Crystal Palace,643,exact_team,1.0,Chilwell,Crystal Palace
+Quinten Timber,Crystal Palace,644,exact_team,1.0,Timber,Crystal Palace
+Christos Mouzakitis,Hull City,645,exact_team,1.0,Mouzakitis,Hull City
+Malick Fofana,Sunderland,646,exact_team,1.0,Fofana,Sunderland
+Darío Osorio,Crystal Palace,647,exact_team,1.0,Osorio,Crystal Palace
+Jean-Mattéo Bahoya,Leeds United,648,exact_team,1.0,Bahoya,Leeds
+Ainsley Maitland-Niles,Everton,649,exact_team,1.0,Maitland-Niles,Everton
+David Affengruber,Fulham,650,exact_team,1.0,Affengruber,Fulham
+Juan Riquelme Angulo,Sunderland,651,web_name_in_name,1.0,J.Angulo,Sunderland
+Floyd Samba,Manchester City,653,exact_team,1.0,Samba,Man City
+Braiden Graham,Everton,654,exact_team,1.0,Graham,Everton
+Yann Gboho,Coventry City,655,exact_team,1.0,Gboho,Coventry City
+Stephen Mfuni,Coventry City,656,exact_team,1.0,Mfuni,Coventry City
+Gustavo Nunes,Brentford,657,web_name_in_name,1.0,Nunes,Brentford
+Younes Ibrahim,Brighton & Hove Albion,658,exact_team,1.0,Ibrahim,Brighton
+Mason Miley,Newcastle United,659,exact_team,1.0,Miley,Newcastle
+Benjamin Fredrick,Brentford,660,exact_team,1.0,Fredrick,Brentford
+Ellery Balcombe,Brentford,661,exact_team,1.0,Balcombe,Brentford
+Mahdi Nicoll-Jazuli,Chelsea,662,exact_team,1.0,Nicoll-Jazuli,Chelsea
+Miodrag Pivaš,Newcastle United,663,exact_team,1.0,Pivas,Newcastle
+Vakhtang Salia,Newcastle United,664,exact_team,1.0,Salia,Newcastle
+Michael Mills,Newcastle United,665,exact_team,1.0,Mills,Newcastle
+Kyran Thompson,Newcastle United,666,exact_team,1.0,Thompson,Newcastle
+James Wright,Aston Villa,667,exact_team,1.0,Wright,Aston Villa
+Timur Tuterov,Sunderland,668,fuzzy_team,0.889,Tutierov,Sunderland
+Teddy Sharman-Lowe,Chelsea,669,exact_team,1.0,Sharman-Lowe,Chelsea
+Olutayo Subuloye,Chelsea,670,exact_team,1.0,Subuloye,Chelsea
+Luca Gunter,Tottenham Hotspur,671,exact_team,1.0,Gunter,Spurs
+Modou Kéba Cissé,Aston Villa,672,exact_team,1.0,Cissé,Aston Villa

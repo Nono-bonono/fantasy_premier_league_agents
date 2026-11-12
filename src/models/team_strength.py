@@ -42,7 +42,16 @@ def load_team_fixtures():
 
 
 def last_season_team_fixtures():
-    """Team-level results for 2025-26, rebuilt from the player table (one row per team per fixture)."""
+    """Team-level results for 2025-26, one row per team per fixture (both games of a double GW).
+
+    Reads team_fixtures_2025-26.parquet (written by fpl_last_season.py). Falls back to rebuilding from
+    the player table, which holds one opponent per GW and so misses the second match of a double GW.
+    """
+    path = os.path.join(PROC, "team_fixtures_2025-26.parquet")
+    if os.path.exists(path):
+        return pd.read_parquet(path)
+    print("[warn] team_fixtures_2025-26.parquet not found - run src/scrapers/fpl_last_season.py. "
+          "Falling back to the player table (double-GW second matches missing).")
     d = pd.read_parquet(os.path.join(PROC, "player_gw_2025-26.parquet"))
     d = d.drop_duplicates(["fixture_id", "team"])
     h = d.was_home.astype(bool)

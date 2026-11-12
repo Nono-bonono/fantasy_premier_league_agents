@@ -8,7 +8,8 @@ WHAT IT MAXIMISES (over the next HORIZON gameweeks, default 2)
     - 4 per hit
     - MARGIN per transfer        (noise margin: a free transfer must gain > MARGIN,
                                   a hit must gain > 4 + MARGIN, or the model holds)
-    + FT_END_VALUE per free transfer still banked after the last week
+    + FT_END_VALUE per free transfer still banked after the last week, counting at most FT_CAP of them
+      (FT_CAP=2: having 2 free transfers is valued, a 3rd-5th adds nothing)
   Only week 1 is acted on; weeks 2+ are the plan that makes week 1 sensible (re-run every week).
 
 HARD RULES
@@ -25,10 +26,10 @@ EXPECTED POINTS
 USAGE (run fpl.py, fpl_fixtures.py and ingest.py first, as for predict_next.py):
     python src/optimise/transfers.py                 # asks for a team ID (offers ones used before)
     python src/optimise/transfers.py --team 123456 --horizon 2
-    python src/optimise/transfers.py --team 123456 --ft 2 --margin 1.5
+    python src/optimise/transfers.py --team 123456 --ft 2 --margin 3
 
-OUTPUT: data/recommendations/<team_id>_<team-name>/gw<N>_<date>.csv  (15-man squad: role, xpts per GW)
-        data/recommendations/<team_id>_<team-name>/gw<N>_<date>.json (transfers, plan, settings used)
+OUTPUT: data/recommendations/<team_id>_<team-name>/gw<N>_<date>_<HHMM>.csv  (15-man squad: role, xpts per GW)
+        data/recommendations/<team_id>_<team-name>/gw<N>_<date>_<HHMM>.json (transfers, plan, settings used)
         data/recommendations/teams.csv                               (teams used before, for the prompt)
 
 INSTALL: pip install pulp highspy requests pandas pyarrow scipy
@@ -64,8 +65,9 @@ DEFAULTS = dict(
     horizon=2,          # gameweeks planned (replay: 1-2 beat 3-5)
     decay=0.9,          # weight per week further out: 1, 0.9, 0.81, ...
     bench_weight=0.1,   # value of an outfield bench player's points (auto-sub chance)
-    margin=1.5,         # noise margin per transfer, in points over the horizon
+    margin=2.0,         # noise margin per transfer (replay: 2-3 is a flat region, fewer hits)
     ft_end_value=1.0,   # value of each free transfer still banked after the horizon
+    ft_cap=2,           # only this many banked free transfers count towards ft_end_value (5 = all)
     hit=4,
     max_ft=5,
     model="m5",
@@ -174,6 +176,8 @@ def optimise(pts, meta, squad, bank, ft, cfg, allow_transfers=True, time_limit=2
     money = pulp.LpVariable.dicts("bank", W, lowBound=0)
     hits = pulp.LpVariable.dicts("hits", W, lowBound=0, cat=pulp.LpInteger)
     ftv = pulp.LpVariable.dicts("ft", W + ["end"], lowBound=0, upBound=cfg["max_ft"], cat=pulp.LpInteger)
+    ft_counted = pulp.LpVariable("ft_counted", lowBound=0, upBound=cfg.get("ft_cap", cfg["max_ft"]))
+    prob += ft_counted <= ftv["end"]
 
     n_tr = {}
     for k, w in enumerate(W):
@@ -194,7 +198,9 @@ def optimise(pts, meta, squad, bank, ft, cfg, allow_transfers=True, time_limit=2
         prob += pulp.lpSum(x[p][w] for p in P) == 11
         prob += pulp.lpSum(c[p][w] for p in P) == 1
         for t in set(team[p] for p in P):
-            prob += pulp.lpSum(s[p][w] for p in P if team[p] == t) <= 3
+            # 3 per club; more is allowed only if a player you own moved clubs (FPL lets you keep him)
+            limit = max(3, sum(1 for p in owned if team.get(p) == t))
+            prob += pulp.lpSum(s[p][w] for p in P if team[p] == t) <= limit
 
         # free transfers: week-1 count is given; later weeks follow the rules
         if k == 0 and not fresh:
@@ -220,7 +226,7 @@ def optimise(pts, meta, squad, bank, ft, cfg, allow_transfers=True, time_limit=2
     prob += (pts_term
              - cfg["hit"] * pulp.lpSum(hits[w] for w in W)
              - cfg["margin"] * pulp.lpSum(n_tr[w] for w in paid)
-             + cfg["ft_end_value"] * ftv["end"])
+             + cfg["ft_end_value"] * ft_counted)
 
     status = prob.solve(get_solver(time_limit))
     if pulp.LpStatus[status] != "Optimal":
@@ -367,7 +373,7 @@ def remember_team(team_id, name):
 def save(result, state, pts, meta, cfg, gw, hold_obj):
     out_dir = os.path.join(REC_DIR, f"{state['team_id']}_{slug(state['team_name'])}")
     os.makedirs(out_dir, exist_ok=True)
-    stem = os.path.join(out_dir, f"gw{gw}_{date.today().isoformat()}")
+    stem = os.path.join(out_dir, f"gw{gw}_{datetime.now():%Y-%m-%d_%H%M}")
     w1 = result["plan"][0]
     roles = {p: "XI" for p in w1["xi"]} | {p: f"bench {i + 1}" for i, p in enumerate(w1["bench"])}
     roles[w1["captain"]] = "captain"
@@ -406,11 +412,12 @@ def main(argv=None, get=fetch, ask=ask_team_id):
     ap.add_argument("--decay", type=float, default=DEFAULTS["decay"])
     ap.add_argument("--margin", type=float, default=DEFAULTS["margin"])
     ap.add_argument("--ft-value", type=float, default=DEFAULTS["ft_end_value"])
+    ap.add_argument("--ft-cap", type=int, default=DEFAULTS["ft_cap"])
     ap.add_argument("--model", choices=["m3", "m5"], default=DEFAULTS["model"])
     ap.add_argument("--ft", type=int, help="override the free transfers worked out from your history")
     ap.add_argument("--bank", type=float, help="override money in the bank (£m)")
     a = ap.parse_args(argv)
-    cfg = dict(DEFAULTS, horizon=a.horizon, decay=a.decay, margin=a.margin, ft_end_value=a.ft_value, model=a.model)
+    cfg = dict(DEFAULTS, horizon=a.horizon, decay=a.decay, margin=a.margin, ft_end_value=a.ft_value, ft_cap=a.ft_cap, model=a.model)
 
     for f, hint in (("player_gw.parquet", "ingest.py"), ("fpl_players.parquet", "fpl.py"), ("fpl_team_fixtures.parquet", "fpl_fixtures.py")):
         if not os.path.exists(os.path.join(PROC, f)):
